@@ -1,0 +1,162 @@
+@use 'base';
+@use 'layout';
+@use 'variables';
+
+.time-select {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+
+  button {
+    color: var(--color-button);
+    background: none;
+    padding: 10px 10px;
+    border: 2px solid var(--color-button);
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: all 0.5s ease;
+
+    &:hover {
+      color: black;
+      background: var(--color-button);
+    }
+  }
+}
+
+.sound-picker {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+
+  button {
+    color: var(--color-button);
+    padding: 10px 10px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    border: none;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+
+    img {
+      height: 100%;
+    }
+
+    &#rain {
+      background: var(--color-rain);
+    }
+
+    &#beach {
+      background: var(--color-beach);
+    }
+  }
+}
+
+.player-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 45%;
+    }
+
+    .play-image {
+      display: block;
+    }
+
+    .pause-image {
+      display: none;
+    }
+
+    &.playing {
+      .play-image {
+        display: none;
+      }
+
+      .pause-image {
+        display: block;
+      }
+    }
+  }
+
+  svg {
+    position: absolute;
+    height: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    pointer-events: none;
+  }
+}
+
+.time-display {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  font-size: 20px;
+}
+
+.vid-container {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  min-width: 100%;
+  z-index: -10;
+
+  video {
+    height: 100%;
+    min-width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .time-select {
+    flex-direction: column;
+    height: 80%;
+
+    button {
+      padding: 20px 20px;
+      font-size: 15px;
+    }
+  }
+
+  .sound-picker {
+    flex-direction: column;
+    height: 80%;
+
+    button {
+      padding: 20px 20px;
+      font-size: 15px;
+    }
+  }
+
+  .player-container {
+    flex-direction: column;
+    height: 80%;
+
+    img {
+      width: 50%;
+    }
+  }
+}
