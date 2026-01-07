@@ -10,6 +10,8 @@ import { PlayerState } from './core/types';
 const playerState: PlayerState = {
   isPlaying: false,
   duration: 120,
+  soundSrc: null,
+  videoSrc: null,
 };
 
 const play = () => {
@@ -53,6 +55,16 @@ const setDuration = (duration: number) => {
   renderTime(duration);
 };
 
+const setMedia = (soundSrc: string, videoSrc: string) => {
+  stop();
+
+  playerState.soundSrc = soundSrc;
+  playerState.videoSrc = videoSrc;
+
+  backgroundAudio.src = soundSrc;
+  videoBackground.src = videoSrc;
+}
+
 const app = () => {
   const outline = document.querySelector(
     '.moving-outline circle',
@@ -87,10 +99,12 @@ const app = () => {
 
   sounds.forEach((button) => {
     button.addEventListener('click', () => {
-      if (!button.dataset.sound || !button.dataset.video) return;
-      backgroundAudio.src = button.dataset.sound;
-      videoBackground.src = button.dataset.video;
-      pause();
+      const sound = button.dataset.sound;
+      const video = button.dataset.video;
+
+      if (!sound || !video) return;
+
+      setMedia(sound, video);
     });
   });
 
