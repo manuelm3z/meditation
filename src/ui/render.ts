@@ -1,6 +1,4 @@
-import {
-  timeDisplay
-} from '../ui/dom';
+import { timeDisplay } from '../ui/dom';
 
 const formatNumber = (number: number) => {
   return number < 10 ? `0${number}` : number;

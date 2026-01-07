@@ -1,9 +1,5 @@
 import { playerState } from './state';
-import {
-  backgroundAudio,
-  playButton,
-  videoBackground
-} from '../ui/dom';
+import { backgroundAudio, playButton, videoBackground } from '../ui/dom';
 import { renderTime } from '../ui/render';
 
 export const play = () => {
@@ -44,4 +40,4 @@ export const setMedia = (soundSrc: string, videoSrc: string) => {
 
   backgroundAudio.src = soundSrc;
   videoBackground.src = videoSrc;
-}
+};

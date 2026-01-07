@@ -1,13 +1,9 @@
-import {
-  backgroundAudio,
-  outline,
-} from './ui/dom';
+import { backgroundAudio, outline } from './ui/dom';
 import './styles/main.scss';
 import { renderTime } from './ui/render';
 import { stop } from './core/actions';
 import { playerState } from './core/state';
 import { setEvents } from './ui/events';
-
 
 const app = () => {
   setEvents();
