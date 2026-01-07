@@ -6,12 +6,11 @@
     <title>Meditation App</title>
     <link rel="preload" href="/sounds/rain.mp3" as="audio" />
     <link rel="preload" href="/sounds/beach.mp3" as="audio" />
-    <link rel="stylesheet" href="/css/main.scss" />
   </head>
   <body>
     <div class="app">
       <div class="vid-container">
-        <video loop autoplay muted playsinline>
+        <video loop muted playsinline id="video-element">
           <source src="/video/rain.mp4" type="video/mp4" />
         </video>
       </div>
@@ -21,10 +20,13 @@
         <button data-time="600">10 Minutes</button>
       </div>
       <div class="player-container">
-        <audio class="song">
+        <audio id="audio-element">
           <source src="/sounds/rain.mp3" />
         </audio>
-        <img src="/svg/play.svg" alt="play" class="play" />
+        <button id="start" aria-label="Play / Pause">
+          <img class="play-image" src="/svg/play.svg" alt="" />
+          <img class="pause-image" src="/svg/pause.svg" alt="" />
+        </button>
         <svg
           class="track-outline"
           width="453"
@@ -57,17 +59,17 @@
             stroke-width="20"
           />
         </svg>
-        <h3 class="time-display">02:00</h3>
+        <h3 id="timer" class="time-display">02:00</h3>
       </div>
       <div class="sound-picker">
-        <button data-sound="/sounds/rain.mp3" data-video="/video/rain.mp4">
+        <button id="rain" data-sound="/sounds/rain.mp3" data-video="/video/rain.mp4">
           <img src="/svg/rain.svg" alt="rain" />
         </button>
-        <button data-sound="/sounds/beach.mp3" data-video="/video/beach.mp4">
+        <button id="beach" data-sound="/sounds/beach.mp3" data-video="/video/beach.mp4">
           <img src="/svg/beach.svg" alt="beach" />
         </button>
       </div>
     </div>
-    <script src="/main.js"></script>
+    <script type="module" src="/main.js"></script>
   </body>
 </html>

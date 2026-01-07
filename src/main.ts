@@ -1,12 +1,10 @@
+import { backgroundAudio, playButton, videoBackground } from './ui/dom';
+import './styles/main.scss';
+
 const app = () => {
-  const song = document.querySelector('.song') as HTMLAudioElement;
-  const play = document.querySelector('.play') as HTMLImageElement;
   const outline = document.querySelector(
     '.moving-outline circle',
   ) as SVGCircleElement;
-  const video = document.querySelector(
-    '.vid-container video',
-  ) as HTMLVideoElement;
   const sounds = document.querySelectorAll(
     '.sound-picker button',
   ) as NodeListOf<HTMLButtonElement>;
@@ -20,15 +18,15 @@ const app = () => {
   outline.style.strokeDasharray = outlineLength as unknown as string;
   outline.style.strokeDashoffset = outlineLength as unknown as string;
 
-  play.addEventListener('click', () => {
-    if (song.paused) {
-      song.play();
-      video.play();
-      play.src = './svg/pause.svg';
+    playButton.addEventListener('click', () => {
+    if (backgroundAudio.paused) {
+      backgroundAudio.play();
+      videoBackground.play();
+      playButton.classList.add('playing');
     } else {
-      song.pause();
-      video.pause();
-      play.src = './svg/play.svg';
+      backgroundAudio.pause();
+      videoBackground.pause();
+      playButton.classList.remove('playing');
     }
   });
 
@@ -42,13 +40,14 @@ const app = () => {
   sounds.forEach((button) => {
     button.addEventListener('click', () => {
       if (!button.dataset.sound || !button.dataset.video) return;
-      song.src = button.dataset.sound;
-      video.src = button.dataset.video;
+      backgroundAudio.src = button.dataset.sound;
+      videoBackground.src = button.dataset.video;
+      playButton.classList.remove('playing');
     });
   });
 
-  song.ontimeupdate = () => {
-    let currentTime = song.currentTime;
+  backgroundAudio.ontimeupdate = () => {
+    let currentTime = backgroundAudio.currentTime;
     let elapsed = fakeDuration - currentTime;
     let seconds = Math.floor(elapsed % 60);
     let minutes = Math.floor(elapsed / 60);
@@ -59,10 +58,9 @@ const app = () => {
     timeDisplay.textContent = `${formatNumber(minutes)}:${formatNumber(seconds)}`;
 
     if (currentTime >= fakeDuration) {
-      song.pause();
-      song.currentTime = 0;
-      play.src = './svg/play.svg';
-      video.pause();
+      backgroundAudio.pause();
+      backgroundAudio.currentTime = 0;
+      videoBackground.pause();
     }
   };
 
